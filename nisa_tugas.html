@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biodata Anisa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --light-color: #f8f9fa;
+            --dark-color: #1a1a2e;
+            --card-bg-light: #ffffff;
+            --card-bg-dark: #16213e;
+            --text-light: #333333;
+            --text-dark: #e0e6ed;
+            --border-light: #e9ecef;
+            --border-dark: #2d3748;
+            --gradient-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-dark: linear-gradient(135deg, #0f3460 0%, #0e4b99 100%);
+        }
+
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: var(--text-dark);
+        }
+
+        body.dark-mode::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: var(--gradient-light);
+            padding: 4px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        body.dark-mode .profile-img {
+            background: var(--gradient-dark);
+            box-shadow: 0 10px 30px rgba(14, 75, 153, 0.4);
+        }
+
+        body.dark-mode .profile-img:hover {
+            box-shadow: 0 20px 40px rgba(14, 75, 153, 0.6);
+        }
+
+        .card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: none;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .card {
+            background: rgba(22, 33, 62, 0.95);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .card:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            padding: 2.5rem;
+            background: var(--gradient-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-mode .card-header {
+            background: var(--gradient-dark);
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%) rotate(30deg); }
+            50% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        .card-header h1 {
+            position: relative;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 2.5rem;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        body.dark-mode .card-body {
+            background: rgba(22, 33, 62, 0.5);
+        }
+
+        .social-media a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 50%;
+            margin-right: 12px;
+            margin-bottom: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .social-media a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4);
+        }
+
+        body.dark-mode .social-media a {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body.dark-mode .social-media a:hover {
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .list-group-item {
+            padding: 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        body.dark-mode .list-group-item {
+            background: rgba(45, 55, 72, 0.6);
+            color: var(--text-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .list-group-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .list-group-item strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        body.dark-mode .list-group-item strong {
+            color: var(--accent-color);
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+
+        body.dark-mode .section-title {
+            color: var(--accent-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-light);
+            border-radius: 4px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        body.dark-mode .section-title::after {
+            background: var(--gradient-dark);
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px rgba(102, 126, 234, 0.5); }
+            to { box-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+        }
+
+        .badge {
+            font-size: 0.9rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 500;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .badge-hobby {
+            background: var(--gradient-light);
+            color: white;
+            border: none;
+        }
+
+        .badge-hobby:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        body.dark-mode .badge-hobby {
+            background: var(--gradient-dark);
+        }
+
+        body.dark-mode .badge-hobby:hover {
+            box-shadow: 0 10px 25px rgba(14, 75, 153, 0.4);
+        }
+
+        .btn-theme {
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .btn-theme:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        body.dark-mode .btn-theme {
+            background: var(--gradient-dark);
+            border: none;
+            color: white;
+        }
+
+        body.dark-mode .btn-theme:hover {
+            box-shadow: 0 10px 25px rgba(14, 75, 153, 0.4);
+        }
+
+        .about-text {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        body.dark-mode .about-text {
+            background: rgba(45, 55, 72, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .alert {
+            border-radius: 15px;
+            border: none;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        body.dark-mode .alert {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--accent-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-footer {
+            background: rgba(255, 255, 255, 0.8) !important;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 25px;
+        }
+
+        body.dark-mode .card-footer {
+            background: rgba(22, 33, 62, 0.8) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-1deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .role-badge {
+            background: var(--gradient-light);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        body.dark-mode .role-badge {
+            background: var(--gradient-dark);
+        }
+
+        .text-primary-custom {
+            color: var(--primary-color) !important;
+        }
+
+        body.dark-mode .text-primary-custom {
+            color: var(--accent-color) !important;
+        }
+
+        .text-muted {
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card-header h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+            
+            .card-header {
+                padding: 2rem;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-light);
+            border-radius: 4px;
+        }
+
+        body.dark-mode ::-webkit-scrollbar-thumb {
+            background: var(--gradient-dark);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-xl-8">
+                <div class="card shadow">
+                    <div class="card-header text-white">
+                        <h1 class="text-center mb-0">✨ Biodata Diri ✨</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-5">
+                            <div class="d-flex justify-content-center">
+                                <img src="anisa.jpeg" alt="Foto Profil" class="profile-img rounded-circle floating">
+                            </div>
+                            <h2 id="nama" class="mt-4 mb-2 fw-bold">Anisa</h2>
+                            <div class="role-badge" id="role">
+                                <i class="fas fa-graduation-cap me-2"></i>Siswa Kelas XI
+                            </div>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <h4 class="section-title">
+                                    <i class="fas fa-user me-2"></i>Informasi Pribadi
+                                </h4>
+                                <div class="list-group list-group-flush mb-4">
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-id-card me-2"></i>Nama Lengkap:</strong>
+                                        <div class="mt-1" id="nama-lengkap">Anisa</div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-calendar-alt me-2"></i>TTL:</strong>
+                                        <div class="mt-1" id="ttl">Batam, 24 Februari 2007</div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-school me-2"></i>Kelas:</strong>
+                                        <div class="mt-1" id="kelas">XI TJA 1</div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-building me-2"></i>Sekolah:</strong>
+                                        <div class="mt-1" id="sekolah">SMK Negeri 7 Batam</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <h4 class="section-title">
+                                    <i class="fas fa-address-card me-2"></i>Kontak
+                                </h4>
+                                <div class="list-group list-group-flush">
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-envelope me-2"></i>Email:</strong>
+                                        <div class="mt-1" id="email">nabilaamrisitumorang@gmail.com</div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-phone me-2"></i>Telepon:</strong>
+                                        <div class="mt-1" id="telepon">-</div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-map-marker-alt me-2"></i>Alamat:</strong>
+                                        <div class="mt-1" id="alamat">Perum. Hawai Garden Blok G31</div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <strong><i class="fas fa-share-alt me-2"></i>Media Sosial:</strong>
+                                        <div class="social-media mt-3">
+                                            <a href="#" title="Instagram" class="social-link">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
+                                            <a href="#" title="Facebook" class="social-link">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                            <a href="#" title="Twitter" class="social-link">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                            <a href="#" title="TikTok" class="social-link">
+                                                <i class="fab fa-tiktok"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <h4 class="section-title">
+                                <i class="fas fa-book-open me-2"></i>Tentang Saya
+                            </h4>
+                            <p id="tentang-saya" class="about-text">
+                                Saya anak ke 3 dari 4 bersaudara. Saya lahir di Batam dan besar di lingkungan yang penuh dengan kebersamaan. 
+                                Saya memiliki seorang adik, abang, dan kakak yang selalu mendukung saya. Olahraga adalah passion saya, 
+                                terutama voli dan badminton. Saya menikmati waktu luang dengan bermain voli bersama teman-teman atau 
+                                mengikuti turnamen badminton di sekolah.
+                            </p>
+                        </div>
+
+                        <div class="mt-5">
+                            <h4 class="section-title">
+                                <i class="fas fa-heart me-2"></i>Hobi & Minat
+                            </h4>
+                            <div class="hobi-container">
+                                <span class="badge badge-hobby">
+                                    <i class="fas fa-volleyball-ball me-2"></i>Volly
+                                </span>
+                                <span class="badge badge-hobby">
+                                    <i class="fas fa-table-tennis me-2"></i>Badminton
+                                </span>
+                                <span class="badge badge-hobby">
+                                    <i class="fas fa-music me-2"></i>Musik
+                                </span>
+                                <span class="badge badge-hobby">
+                                    <i class="fas fa-utensils me-2"></i>Memasak
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <h4 class="section-title">
+                                <i class="fas fa-star me-2"></i>Fakta Menarik
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="alert d-flex align-items-center">
+                                        <i class="fas fa-users me-3 fs-4"></i>
+                                        <div>
+                                            <strong>Keluarga</strong><br>
+                                            Anak ke-3 dari 4 bersaudara
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="alert d-flex align-items-center">
+                                        <i class="fas fa-home me-3 fs-4"></i>
+                                        <div>
+                                            <strong>Asal</strong><br>
+                                            Lahir dan besar di Batam
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer text-center">
+                        <button id="ubahTema" class="btn btn-theme btn-outline-primary me-3">
+                            <i class="fas fa-moon me-2"></i>Mode Gelap
+                        </button>
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-copyright me-1"></i>
+                                <span id="tahun"></span> - Biodata Anisa dengan ❤️
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS + Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Data biodata
+        const biodata = {
+            nama: "Anisa",
+            namaLengkap: "Anisa",
+            ttl: "Batam, 24 Februari 2007",
+            kelas: "XI TJA 1",
+            sekolah: "SMK Negeri 7 Batam",
+            email: "nabilaamrisitumorang@gmail.com",
+            telepon: "081536866283",
+            alamat: "Perum. Hawai Garden Blok G31",
+            tentang: "Saya anak ke 3 dari 4 bersaudara. Saya lahir di Batam dan besar di lingkungan yang penuh dengan kebersamaan. Saya memiliki seorang adik, abang, dan kakak yang selalu mendukung saya. Olahraga adalah passion saya, terutama voli dan badminton. Saya menikmati waktu luang dengan bermain voli bersama teman-teman atau mengikuti turnamen badminton di sekolah.",
+            hobi: ["Volly", "Badminton", "Musik", "Memasak"],
+        };
+
+        // Fungsi untuk mengisi data biodata
+        function isiBiodata() {
+            document.getElementById("nama").textContent = biodata.nama;
+            document.getElementById("nama-lengkap").textContent = biodata.namaLengkap;
+            document.getElementById("ttl").textContent = biodata.ttl;
+            document.getElementById("kelas").textContent = biodata.kelas;
+            document.getElementById("sekolah").textContent = biodata.sekolah;
+            document.getElementById("email").textContent = biodata.email;
+            document.getElementById("telepon").textContent = biodata.telepon;
+            document.getElementById("alamat").textContent = biodata.alamat;
+            document.getElementById("tentang-saya").textContent = biodata.tentang;
+
+            // Update role berdasarkan kelas
+            document.getElementById("role").innerHTML = `<i class="fas fa-graduation-cap me-2"></i>Siswa Kelas ${biodata.kelas}`;
+
+            // Isi hobi
+            const hobiContainer = document.querySelector(".hobi-container");
+            hobiContainer.innerHTML = "";
+            biodata.hobi.forEach((hobi, index) => {
+                const iconClass = hobi === "Volly" ? "fa-volleyball-ball" : 
+                                hobi === "Badminton" ? "fa-table-tennis" : 
+                                hobi === "Musik" ? "fa-music" : "fa-utensils";
+                
+                const badge = document.createElement("span");
+                badge.className = "badge badge-hobby";
+                badge.innerHTML = `<i class="fas ${iconClass} me-2"></i>${hobi}`;
+                hobiContainer.appendChild(badge);
+            });
+
+            // Isi tahun
+            document.getElementById("tahun").textContent = new Date().getFullYear();
+        }
+
+        // Fungsi untuk mengubah tema gelap/terang
+        function toggleDarkMode() {
+            const body = document.body;
+            const btn = document.getElementById("ubahTema");
+            
+            body.classList.toggle("dark-mode");
+            
+            if (body.classList.contains("dark-mode")) {
+                btn.innerHTML = '<i class="fas fa-sun me-2"></i>Mode Terang';
+                btn.classList.remove("btn-outline-primary");
+                btn.classList.add("btn-outline-light");
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                btn.innerHTML = '<i class="fas fa-moon me-2"></i>Mode Gelap';
+                btn.classList.remove("btn-outline-light");
+                btn.classList.add("btn-outline-primary");
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        // Fungsi untuk memuat tema yang tersimpan
+        function loadTheme() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+                const btn = document.getElementById("ubahTema");
+                btn.innerHTML = '<i class="fas fa-sun me-2"></i>Mode Terang';
+                btn.classList.remove("btn-outline-primary");
+                btn.classList.add("btn-outline-light");
+            }
+        }
+
+        // Event listener saat DOM selesai dimuat
+        document.addEventListener("DOMContentLoaded", function () {
+            isiBiodata();
+            loadTheme();
+
+            // Event listener untuk tombol ubah tema
+            document.getElementById("ubahTema").addEventListener("click", toggleDarkMode);
+
+            // Animasi hover pada elemen
+            document.querySelectorAll(".badge-hobby").forEach(badge => {
+                badge.addEventListener("mouseenter", function() {
+                    this.style.transform = "translateY(-5px) scale(1.05)";
+                });
+                badge.addEventListener("mouseleave", function() {
+                    this.style.transform = "translateY(0) scale(1)";
+                });
+            });
+
+            // Animasi hover pada social media
+            document.querySelectorAll(".social-media a").forEach(social => {
+                social.addEventListener("mouseenter", function() {
+                    this.style.transform = "translateY(-5px) scale(1.1)";
+                });
+                social.addEventListener("mouseleave", function() {
+                    this.style.transform = "translateY(0) scale(1)";
+                });
+            });
+
+            // Animasi hover pada list items
+            document.querySelectorAll(".list-group-item").forEach(item => {
+                item.addEventListener("mouseenter", function() {
+                    this.style.transform = "translateX(10px)";
+                });
+                item.addEventListener("mouseleave", function() {
+                    this.style.transform = "translateX(0)";
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
